@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { StatusBar } from "expo-status-bar";
 import {
   Text,
   VStack,
@@ -7,6 +8,8 @@ import {
   // ScrollView,
 } from "native-base";
 
+import { TextInput, Button, TouchableOpacity } from "react-native";
+
 import { ScrollView, ImageBackground, Image } from "react-native";
 
 import { Dimensions, StyleSheet } from "react-native";
@@ -14,6 +17,7 @@ import AppScreen from "../component/AppScreen";
 import MenuCard from "../component/MenuCard";
 import Recomandation from "../component/Recomandation";
 import reomData from "../data/recomandation";
+import Login from "./Login";
 
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 
@@ -21,95 +25,303 @@ const WIDTH = Dimensions.get("window").width;
 const HEIGHT = Dimensions.get("window").height;
 
 const menuData = [
-  { id: "12", title: "Condo" },
-  { id: "15", title: "Resort" },
-  { id: "158", title: "Office" },
-  { id: "112", title: "Urban" },
+  { id: "12", title: "Chocolate" },
+  { id: "15", title: "Baby Food" },
+  { id: "158", title: "Diaper" },
+  { id: "112", title: "Dry Food's" },
 ];
 
 const HomeScreen = ({ navigation }) => {
+  const [logos, setLogos] = useState(false);
+
+  const [homes, setHomes] = useState(false);
+
+  const [logins, setLogins] = useState(true);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setInterval(() => {
+      setLogos(false);
+      setHomes(true);
+    }, 2000);
+    setInterval(() => {
+      setLogins(true);
+    }, 6000);
+  }, []);
+
   return (
     <AppScreen>
-      <View style={styles.headerview}>
-        <Text style={styles.location}>
-          <SimpleLineIcons name="location-pin" color="#000" size={20} /> Dhaka
-        </Text>
-        <Image
-          style={styles.logo}
-          source={require("../assets/pic/unsplash_tHkJAMcO3QE.png")}
-        />
+      <View>
+        {logos && !logins && (
+          <Text style={styles.logoshow}>
+            <Image
+              style={styles.logimage}
+              source={require("./../assets/Npic/logo.png")}
+            />
+          </Text>
+        )}
       </View>
-      <ScrollView
-        style={styles.scrollView}
-        showsHorizontalScrollIndicator={false}
-      >
-        <View style={styles.banner}>
-          <ImageBackground
-            source={require("../assets/pic/unsplash_Goc3UUFY8lM.png")}
-            imageStyle={{ borderRadius: 24 }}
-            style={styles.imageshaow}
-          >
-            <View style={styles.backText}>
-              <Text
-                style={{
-                  fontSize: 22,
-                  fontWeight: "bold",
-                  color: "#FFFFFF",
+
+      {!logos ||
+        (logins && (
+          <View>
+            <Text style={styles.location}>.</Text>
+
+            {/* <Login setLogins={setLogins} /> */}
+            <View style={styles.container}>
+              <Image
+                style={styles.image}
+                source={require("./../assets/Npic/163505180541061.jpg")}
+              />
+              <Image
+                style={styles.image}
+                source={require("./../assets/Npic/163505180541061.jpg")}
+              />
+
+              <StatusBar style="auto" />
+              <TextInput style={styles.input} />
+              <View style={styles.inputView}>
+                <TextInput
+                  style={styles.TextInput}
+                  placeholder="Email"
+                  placeholderTextColor="#003f5c"
+                />
+              </View>
+
+              <View style={styles.inputView}>
+                <TextInput
+                  style={styles.TextInput}
+                  placeholder="Password."
+                  placeholderTextColor="#003f5c"
+                  //   secureTextEntry={true}
+                  onChangeText={(password) => setPassword(password)}
+                />
+              </View>
+
+              <TouchableOpacity>
+                <Text style={styles.forgot_button}>Forgot Password?</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.loginBtn}
+                onPress={() => {
+                  // setLogins(true);
+                  alert("ok");
                 }}
               >
-                Hill Rose II
-              </Text>
-              <Text
-                style={{
-                  fontSize: 16,
-                  color: "#FFFFFF",
-                  fontWeight: "bold",
-                }}
-              >
-                Sukabumi, West Java
-              </Text>
+                <Text style={styles.loginText}>LOGIN</Text>
+              </TouchableOpacity>
             </View>
-          </ImageBackground>
+          </View>
+        ))}
+
+      {logins && (
+        <View>
+          <View style={styles.headerview}>
+            <Text style={styles.location}>
+              <SimpleLineIcons name="location-pin" color="#000" size={20} />{" "}
+              Dhaka
+            </Text>
+            <Image
+              style={styles.logo}
+              source={require("../assets/Npic/logo.png")}
+            />
+          </View>
+          <ScrollView
+            style={styles.scrollView}
+            showsHorizontalScrollIndicator={false}
+          >
+            <View style={styles.banner}>
+              <ImageBackground
+                source={require("../assets/Npic/1650776948.jpg")}
+                imageStyle={{ borderRadius: 24 }}
+                style={styles.imageshaow}
+              >
+                <View style={styles.backText}>
+                  <Text
+                    style={{
+                      fontSize: 22,
+                      fontWeight: "bold",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    Hill Rose II
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#FFFFFF",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Sukabumi, West Java
+                  </Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={menuData}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              renderItem={({ item }) => <MenuCard data={item} />}
+            />
+
+            {/* Recomandation */}
+            <Text
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#666",
+              }}
+            >
+              Recomandations
+            </Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              // ListHeaderComponent={() => (
+              //   <HeaderComponent navigation={navigation} />
+              // )}
+              // ListFooterComponent={() => <FooterComponent />}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              renderItem={({ item }) => <Recomandation data={item} />}
+            />
+            {/* Recomandation */}
+
+            {/* chocklet */}
+            <Text
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#666",
+              }}
+            >
+              chocklet
+            </Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              // ListHeaderComponent={() => (
+              //   <HeaderComponent navigation={navigation} />
+              // )}
+              // ListFooterComponent={() => <FooterComponent />}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              renderItem={({ item }) => <Recomandation data={item} />}
+            />
+            {/* chocklet */}
+
+            {/* Groceries */}
+            <Text
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#666",
+              }}
+            >
+              Groceries
+            </Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              // ListHeaderComponent={() => (
+              //   <HeaderComponent navigation={navigation} />
+              // )}
+              // ListFooterComponent={() => <FooterComponent />}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              renderItem={({ item }) => <Recomandation data={item} />}
+            />
+            {/* Groceries */}
+
+            {/* Fry foods */}
+            <Text
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#666",
+              }}
+            >
+              Fry foods
+            </Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              // ListHeaderComponent={() => (
+              //   <HeaderComponent navigation={navigation} />
+              // )}
+              // ListFooterComponent={() => <FooterComponent />}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              renderItem={({ item }) => <Recomandation data={item} />}
+            />
+            {/* Fry foods */}
+
+            {/* Cow & Gate cereal */}
+            <Text
+              style={{
+                paddingHorizontal: 20,
+                paddingVertical: 10,
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "#666",
+              }}
+            >
+              Cow & Gate cereal
+            </Text>
+            <FlatList
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              // ListHeaderComponent={() => (
+              //   <HeaderComponent navigation={navigation} />
+              // )}
+              // ListFooterComponent={() => <FooterComponent />}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              renderItem={({ item }) => <Recomandation data={item} />}
+            />
+            {/* Cow & Gate cereal */}
+
+            <HeaderComponent />
+          </ScrollView>
         </View>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          data={menuData}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          renderItem={({ item }) => <MenuCard data={item} />}
-        />
-        <Text
-          style={{
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            fontSize: 16,
-            fontWeight: "bold",
-            color: "#666",
-          }}
-        >
-          Recomandations
-        </Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          data={reomData}
-          // ListHeaderComponent={() => (
-          //   <HeaderComponent navigation={navigation} />
-          // )}
-          // ListFooterComponent={() => <FooterComponent />}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          renderItem={({ item }) => <Recomandation data={item} />}
-        />
-        <HeaderComponent />
-      </ScrollView>
+      )}
     </AppScreen>
   );
 };
@@ -170,6 +382,16 @@ const HeaderComponent = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  logoshow: {
+    marginTop: 1,
+    height: 500,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginLeft: 100,
+    justifyContent: "center",
+  },
+
   imageWrap: {
     width: "90%",
   },
@@ -181,7 +403,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   location: {
-    backgroundColor: "#F9F9F9",
+    backgroundColor: "transparent",
     paddingHorizontal: 30,
     paddingVertical: 15,
     marginVertical: 10,
@@ -213,7 +435,7 @@ const styles = StyleSheet.create({
   banner: {
     width: "100%",
     // margin: "0",
-    height: 650,
+    height: 250,
     alignContent: "center",
     padding: 20,
   },
@@ -229,5 +451,67 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.2,
     elevation: 1,
+  },
+
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  image: {
+    marginBottom: 40,
+    marginTop: 40,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
+  logimage: {
+    marginBottom: 40,
+    marginTop: 140,
+    width: 200,
+    height: 350,
+    borderRadius: 30,
+  },
+
+  inputView: {
+    backgroundColor: "#fff",
+    borderColor: "#000",
+    borderRadius: 10,
+    width: "95%",
+    height: 45,
+    marginBottom: 20,
+
+    alignItems: "center",
+  },
+
+  TextInput: {
+    height: 50,
+    flex: 1,
+    padding: 10,
+    marginLeft: 20,
+  },
+
+  forgot_button: {
+    height: 30,
+    marginBottom: 30,
+    fontSize: 22,
+    color: "salmon",
+  },
+
+  loginBtn: {
+    width: "90%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginTop: 40,
+    backgroundColor: "#4287f5",
+  },
+  loginText: {
+    color: "#fff",
+    fontSize: 21,
   },
 });

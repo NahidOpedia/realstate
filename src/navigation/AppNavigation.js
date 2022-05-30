@@ -12,7 +12,6 @@ import Details from "../screen/Details";
 import SavedHome from "../screen/SavedHome";
 import Search from "../screen/Search/Search";
 import Profile from "../screen/Profile";
-import CustomeDrawer from "./CustomeDrawer";
 
 const Stack = createNativeStackNavigator();
 // const Drawer = createDrawerNavigator();

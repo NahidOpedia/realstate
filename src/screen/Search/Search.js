@@ -22,12 +22,12 @@ import tagData from "../../data/tag";
 import RecomandationP from "../../component/RecomandationP";
 
 const image = {
-  uri: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  uri: "https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 };
 
 const Search = () => {
   const [value, setValue] = React.useState(null);
-  const [totalD, setTotalD] = React.useState(productsData);
+  const [totalD, setTotalD] = React.useState(reomData);
   const [dataP, setDataP] = React.useState([]);
   const handleChange = (text) => setValue(text);
 

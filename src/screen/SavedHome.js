@@ -2,11 +2,12 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import React from "react";
 import productsData from "../data/AllProducts";
 import Recomandation from "../component/Recomandation";
+import reomData from "../data/recomandation";
 
 const SavedHome = () => {
   return (
     <View>
-      <Text>Save your dream house</Text>
+      <Text>Save your Products For Cart</Text>
       <View>
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -14,7 +15,7 @@ const SavedHome = () => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          data={productsData}
+          data={reomData}
           // ListHeaderComponent={() => (
           //   <HeaderComponent navigation={navigation} />
           // )}

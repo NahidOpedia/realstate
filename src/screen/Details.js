@@ -18,7 +18,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
 const image2 = {
-  uri: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+  uri: "https://images.unsplash.com/photo-1505253213348-ce3e0ff1f0cc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
 };
 
 const Details = ({ navigation }) => {
@@ -29,7 +29,7 @@ const Details = ({ navigation }) => {
         style={styles.scrollView}
         showsHorizontalScrollIndicator={false}
       >
-        <Text>Details</Text>
+        {/* <Text>Details</Text> */}
         <View style={styles.headerview}>
           <Text
             onPress={() => {
@@ -46,22 +46,22 @@ const Details = ({ navigation }) => {
         </View>
         <View style={styles.banner}>
           <ImageBackground
-            source={require("../assets/pic/unsplash_Goc3UUFY8lM.png")}
+            source={require("../assets/Npic/16468101648520.jpg")}
             imageStyle={{ borderRadius: 6 }}
             style={{
               width: "100%",
               height: "100%",
             }}
           >
-            <Text style={styles.name}>Hill Rose</Text>
-            <Text>Sukabumi, West Java</Text>
+            <Text style={styles.name}>Dhaka</Text>
+            <Text>ডেলিভারি ৪৮ ঘন্টার মধ্যে</Text>
           </ImageBackground>
         </View>
 
         <View style={styles.details}>
           <View style={styles.header}>
-            <Text style={styles.name}>Ayana Home Stay With Family</Text>
-            <Text style={styles.des}>Old Sukabumi Hwy No 12</Text>
+            <Text style={styles.name}>Gerber hearty bits multigrain</Text>
+            <Text style={styles.des}> Banana Apple Strawberry</Text>
           </View>
           <View style={styles.logos}>
             <Text style={styles.review}>
@@ -76,33 +76,31 @@ const Details = ({ navigation }) => {
         <View>
           <Text style={styles.heade2}>Introduction</Text>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu
-            quam laoreet aliquet amet, ipsum mi. In molestie fames mollis
-            feugiat ultricies ultrices integer in. Vulputate
+            Origin : USA Weight : 227gm Delivery Charge Inside Dhaka 80 Taka
+            Outside Dhaka 150 Taka
           </Text>
         </View>
         <View>
           <Text style={styles.heade2}>Ultilities</Text>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed arcu
-            quam laoreet aliquet amet, ipsum mi. In molestie fames mollis
-            feugiat ultricies ultrices integer in. Vulputate
+            Origin : USA Weight : 227gm Delivery Charge Inside Dhaka 80 Taka
+            Outside Dhaka 150 Taka
           </Text>
         </View>
-        {["School", "Hospital", "Market", "Airport", "Golf", "Embassy"].map(
+        {["vitamine", "Irons", "Nutrains", "Regix", "solt", "fruits"].map(
           (i) => (
             <View style={styles.option}>
               <Text style={styles.heade2}>
-                <FontAwesome5
+                {/* <FontAwesome5
                   name="building"
                   style={{ margin: 10 }}
                   size={24}
                   color="black"
-                />
+                /> */}
                 {i}
               </Text>
 
-              <Text>3 Minutes</Text>
+              <Text>3 grams</Text>
             </View>
           )
         )}
@@ -115,7 +113,7 @@ const Details = ({ navigation }) => {
             feugiat ultricies ultrices integer in. Vulputate
           </Text>
         </View>
-
+        {/* 
         {["2 Bedroom", "2 Bedroom", "1200 SQFT", "Flat"].map((i) => (
           <View style={styles.option}>
             <Text style={styles.heade2}>
@@ -130,9 +128,9 @@ const Details = ({ navigation }) => {
 
             <Text>3 Minutes</Text>
           </View>
-        ))}
+        ))} */}
 
-        <View>
+        {/* <View>
           <Text style={styles.heade2}>Call Center</Text>
         </View>
 
@@ -152,7 +150,7 @@ const Details = ({ navigation }) => {
               <Text>3 Minutes</Text>
             </View>
           )
-        )}
+        )} */}
 
         <TouchableOpacity style={styles.submit} onPress={onOpen}>
           <FontAwesome
@@ -178,15 +176,17 @@ const Details = ({ navigation }) => {
                   height: "100%",
                 }}
               >
-                <Text style={styles.name}>Hill Rose</Text>
-                <Text>Sukabumi, West Java</Text>
+                <Text style={styles.name}>baby food</Text>
+                <Text>Cow & gate Banana Porridge 125 gm</Text>
               </ImageBackground>
             </View>
 
             <View style={styles.details}>
               <View style={styles.header}>
-                <Text style={styles.name}>Ayana Home Stay With Family</Text>
-                <Text style={styles.des}>Old Sukabumi Hwy No 12</Text>
+                <Text style={styles.name}>
+                  Cow & gate Banana Porridge 125 gm
+                </Text>
+                <Text style={styles.des}>ডেলিভারি ৪৮ ঘন্টার মধ্যে</Text>
               </View>
               <View style={styles.logos}>
                 <Text style={styles.review}>
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
   banner: {
     width: "100%",
     // margin: "0",
-    height: 650,
+    height: 350,
     alignContent: "center",
   },
   details: {
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
 
-    backgroundColor: "#ebebeb",
+    backgroundColor: "#81ed47",
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,

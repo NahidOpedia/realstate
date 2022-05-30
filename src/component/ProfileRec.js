@@ -25,6 +25,8 @@ const ProfileRec = ({ data }) => {
         />
 
         <Text style={styles.cat}> A {data.category}</Text>
+        <Text style={styles.cat}> A {data.category}</Text>
+        <Text style={styles.cat}> A {data.category}</Text>
       </Box>
     </Button>
   );
@@ -41,6 +43,7 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
   recImg: {
+    height: 250,
     borderRadius: 5,
   },
 });

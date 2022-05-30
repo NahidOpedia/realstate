@@ -59,7 +59,7 @@ const Profile = () => {
         <View style={styles.profile}>
           <Image
             style={styles.recImg}
-            source={require("./../assets/pic/unsplash_p_kICQCOM4s.png")}
+            source={require("./../assets/Npic/pic.jpg")}
             resizeMode="contain"
             alt="image"
           />
