@@ -9,39 +9,36 @@ const Recomandation = ({ data }) => {
   // console.log({ data });
   return (
     <Button
-      // style={{margin:"10px", border: 'none',background: data.color  }}
+      // style={{ border: "none", background: data.color }}
       bg="#fff"
       m="2"
-      w="45%"
+      w={40}
       borderRadius="10px"
       alignItems="center"
       justifyContent="center"
       onPress={() => navigation.navigate("details1", { data })}
     >
-      <Box alignItems="center">
-        <Image
-          source={data?.image}
-          size="xl"
-          resizeMode="contain"
-          alt="image"
-        />
-        <Text p={2} style={styles.cat}>
-          A {data.category}
-        </Text>
-        <Text
-          alignItems="center"
-          textAlign="left"
-          fontSize="lg"
-          color="black"
-          my="2"
-        >
-          {data.title}
-        </Text>
-        <View style={styles.pricecaart}>
-          <Text style={styles.price}> {data.price}</Text>
-          <Text style={styles.priceadd}>+</Text>
-        </View>
-      </Box>
+      {/* <Box w={"100%"} alignItems="center"> */}
+      <Image source={data?.image} size="xl" resizeMode="contain" alt="image" />
+      <Text p={2} style={styles.cat}>
+        A {data.category}
+      </Text>
+      <Text
+        alignItems="center"
+        textAlign="left"
+        fontSize="sm"
+        color="black"
+        my="2"
+        numberOfLines={1}
+        ellipsizeMode="tail"
+      >
+        {data.title}
+      </Text>
+      <View style={styles.pricecaart}>
+        <Text style={styles.price}> {data.price}</Text>
+        <Text style={styles.priceadd}>+</Text>
+      </View>
+      {/* </Box> */}
     </Button>
   );
 };

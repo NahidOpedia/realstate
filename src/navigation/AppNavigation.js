@@ -12,16 +12,17 @@ import Details from "../screen/Details";
 import SavedHome from "../screen/SavedHome";
 import Search from "../screen/Search/Search";
 import Profile from "../screen/Profile";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const Stack = createNativeStackNavigator();
-// const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{}}>
       <Tab.Screen
-        name="Home"
+        name="HomeS"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
@@ -70,22 +71,23 @@ function MyTabs() {
 const AppNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      {/* <Drawer.Navigator
         screenOptions={{
           headerShown: false,
         }}
         initialRouteName="HomeScreen"
+      > */}
+
+      <Drawer.Navigator
+        screenOptions={{ headerShown: false }}
+        // initialRouteName="HomeScreen"
       >
-        <Stack.Screen name="HomeScreen" component={MyTabs} />
-        {/* <Stack.Screen name="HomeScreen" component={CustomeDrawer} /> */}
-        <Stack.Screen name="details1" component={Details} />
-        <Stack.Screen name="saved" component={SavedHome} />
-        <Stack.Screen name="search" component={Search} />
-        {/* <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="SubScreen" component={SubScreen} />
-        <Stack.Screen name="DetailsScreen" component={DetailsScreen} /> */}
-      </Stack.Navigator>
+        <Drawer.Screen name="All Category" component={MyTabs} />
+        <Drawer.Screen name="Top Deals" component={Details} />
+        <Drawer.Screen name="Make Product Request" component={SavedHome} />
+        <Drawer.Screen name="Coupons" component={Search} />
+      </Drawer.Navigator>
+      {/* </Drawer.Navigator> */}
     </NavigationContainer>
   );
 };

@@ -5,6 +5,7 @@ import {
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import HomeScreen from "../screen/HomeScreen";
+import Search from "../screen/Search/Search";
 
 const Drawer = createDrawerNavigator();
 
@@ -25,12 +26,10 @@ const CustomeDrawer = () => {
         }}
         initialRouteName="HomeScreen"
       >
-        <Drawer.Screen name="HomeScreen">
+        <Drawer.Screen name="Home">
           {(props) => <HomeScreen {...props} />}
         </Drawer.Screen>
-        <Drawer.Screen name="HomeScreens">
-          {(props) => <HomeScreen {...props} />}
-        </Drawer.Screen>
+        <Drawer.Screen name="Search">{(props) => <Search />}</Drawer.Screen>
       </Drawer.Navigator>
     </View>
   );

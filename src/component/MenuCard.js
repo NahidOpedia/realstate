@@ -1,34 +1,52 @@
 import { useNavigation } from "@react-navigation/native";
 import { Box, Button, Heading, Image, Text } from "native-base";
-import React from "react";
+import React, { useState } from "react";
 
 // icosn
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const MenuCard = ({ data, noIcon }) => {
   const navigation = useNavigation();
+  const [ok, setOk] = useState(data?.title);
+
   // console.log({ data });
   return (
     <Button
       style={{
-        margin: 10,
-        width: 180,
+        width: 140,
         // maxWidth: "100%",
         border: "none",
         backgroundColor: "#F6F9FB",
         borderRadius: 10,
+        margin: 5,
       }}
       alignItems="center"
       justifyContent="center"
-      // onPress={() => navigation.navigate("SubScreen", { data })}
+      // onPress={() => navigation.navigate("SubScreen", { data })} `${data?.title} === "all" && "#DC2E45"`
     >
-      <Box w="100%" p="2" alignItems="center">
-        {/* <Image source={data.image} size="xl" resizeMode="contain" alt="image" /> */}
+      <Box
+        style={{
+          borderRadius: 10,
+          backgroundColor: ok === "all" && "#DC2E45",
+        }}
+        w="100%"
+        p="2"
+        alignItems="center"
+      >
+        <Image
+          source={{ uri: `https://illustoon.com/photo/3831.png` }}
+          size="xl"
+          resizeMode="contain"
+          alt="image"
+          style={{
+            borderRadius: 200,
+          }}
+        />
 
         <Text
           alignItems="center"
           textAlign="center"
-          fontSize="lg"
+          fontSize="sm"
           fontWeight="bold"
           color="#4C84B4"
           my="1"
@@ -39,7 +57,7 @@ const MenuCard = ({ data, noIcon }) => {
           {noIcon && (
             <MaterialCommunityIcons
               name="office-building"
-              size={24}
+              size={16}
               color="#4C84B4"
             />
           )}

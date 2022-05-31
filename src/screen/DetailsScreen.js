@@ -19,10 +19,6 @@ import {
   UIManager,
   View,
 } from "react-native";
-import BandSelection from "../component/BandSelection";
-import ModelAndYear from "../component/ModelAndYear";
-import Details from "../component/Details";
-import Compare from "./Compare";
 
 if (Platform.OS === "android") {
   if (UIManager.setLayoutAnimationEnabledExperimental) {

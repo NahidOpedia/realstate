@@ -73,27 +73,26 @@ const BandSelection = () => {
         numColumns={2}
         scrollEnabled={false}
         renderItem={({ item }) => (
-            <Button
+          <Button
             variant="outline"
-                w="45%"
-                m="2"
-                alignItems="center"
-                borderRadius="lg"
-                borderWidth="1px"
-                borderColor="gray.200"
-                onPress={() => console.log(item.id)}
-            >
-                <Image
-                    source={item.image}
-                    size="md"
-                    resizeMode="contain"
-                    alt="image"
-                />
-                </Button>
+            w="45%"
+            m="2"
+            alignItems="center"
+            borderRadius="lg"
+            borderWidth="1px"
+            borderColor="gray.200"
+            onPress={() => console.log(item.id)}
+          >
+            <Image
+              source={item.image}
+              size="md"
+              resizeMode="contain"
+              alt="image"
+            />
+          </Button>
         )}
         keyExtractor={(item) => item.id.toString()}
-        />
-
+      />
     </Box>
   );
 };
