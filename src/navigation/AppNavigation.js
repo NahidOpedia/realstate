@@ -13,6 +13,7 @@ import SavedHome from "../screen/SavedHome";
 import Search from "../screen/Search/Search";
 import Profile from "../screen/Profile";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import Cart from "../screen/Cart";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -86,6 +87,7 @@ const AppNavigation = () => {
         <Drawer.Screen name="Top Deals" component={Details} />
         <Drawer.Screen name="Make Product Request" component={SavedHome} />
         <Drawer.Screen name="Coupons" component={Search} />
+        <Drawer.Screen name="Cart" component={Cart} />
       </Drawer.Navigator>
       {/* </Drawer.Navigator> */}
     </NavigationContainer>
