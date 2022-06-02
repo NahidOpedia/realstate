@@ -5,6 +5,9 @@ const AppScreen = ({ children }) => {
     <Box flex="1" safeArea>
       {children}
     </Box>
+    // <Box flex="1" safeArea>
+    //   {children}
+    // </Box>
   );
 };
 

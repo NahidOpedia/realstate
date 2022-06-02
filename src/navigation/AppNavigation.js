@@ -9,11 +9,13 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import HomeScreen from "../screen/HomeScreen";
 import Details from "../screen/Details";
-import SavedHome from "../screen/SavedHome";
+import SavedHome from "../screen/History";
 import Search from "../screen/Search/Search";
 import Profile from "../screen/Profile";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Cart from "../screen/Cart";
+import TrackOrder from "../screen/TrackOrder";
+import History from "../screen/History";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -21,7 +23,7 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator screenOptions={{}}>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="HomeS"
         component={HomeScreen}
@@ -46,8 +48,8 @@ function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="Save"
-        component={SavedHome}
+        name="History"
+        component={History}
         options={{
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="profile" color={color} size={size} />
@@ -87,6 +89,7 @@ const AppNavigation = () => {
         <Drawer.Screen name="Top Deals" component={Details} />
         <Drawer.Screen name="Make Product Request" component={SavedHome} />
         <Drawer.Screen name="Coupons" component={Search} />
+        <Drawer.Screen name="Track  Your Order" component={TrackOrder} />
         <Drawer.Screen name="Cart" component={Cart} />
       </Drawer.Navigator>
       {/* </Drawer.Navigator> */}
