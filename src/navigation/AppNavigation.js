@@ -8,12 +8,19 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import HomeScreen from "../screen/HomeScreen";
+import Login from "../screen/Login";
 import Details from "../screen/Details";
 import SavedHome from "../screen/SavedHome";
 import Search from "../screen/Search/Search";
 import Profile from "../screen/Profile";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Cart from "../screen/Cart";
+import Chat from "../screen/Chat";
+import EmptyCard from "../screen/EmptyCard";
+import MyCoupons from "../screen/MyCoupons";
+import MyCards from "../screen/MyCards";
+import OrderSumery from "../screen/OrderSumery";
+import UserProfile from "../screen/UserProfile";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -84,10 +91,18 @@ const AppNavigation = () => {
         // initialRouteName="HomeScreen"
       >
         <Drawer.Screen name="All Category" component={MyTabs} />
+        <Drawer.Screen name="Login" component={Login} />
         <Drawer.Screen name="Top Deals" component={Details} />
         <Drawer.Screen name="Make Product Request" component={SavedHome} />
         <Drawer.Screen name="Coupons" component={Search} />
         <Drawer.Screen name="Cart" component={Cart} />
+        <Drawer.Screen name="Chat" component={Chat} />
+        {/* <Text>Will be removed</Text> */}
+        <Drawer.Screen name="MyCoupons" component={MyCoupons} />
+        <Drawer.Screen name="EmptyCard" component={EmptyCard} />
+        <Drawer.Screen name="MyCards" component={MyCards} />
+        <Drawer.Screen name="OrderSumery" component={OrderSumery} />
+        <Drawer.Screen name="Profile" component={UserProfile} />
       </Drawer.Navigator>
       {/* </Drawer.Navigator> */}
     </NavigationContainer>

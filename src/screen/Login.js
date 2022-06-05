@@ -9,56 +9,59 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import OTP from "./OTP";
 
-export default function Login({ setLogins }) {
+export default function Login({ setLogins, navigation }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [numberInput, setNumberInput] = useState("");
+  const [otp, setOtp] = useState(false);
 
   return (
-    <View style={styles.container}>
-      <Text>Login Page</Text>
+    <>
+      {!otp && (
+        <View style={styles.container}>
+          <Text style={styles.mobotext}>Enter Mobile Number</Text>
+          <Text style={styles.mobotext}>
+            for <Text style={styles.mobotextBold}>Login / Registration</Text>
+          </Text>
 
-      <Image
-        style={styles.image}
-        source={require("./../assets/Npic/163505180541061.jpg")}
-      />
+          <StatusBar style="auto" />
+          <Text style={styles.mobo}>Mobile Number</Text>
+          <View style={styles.inputView}>
+            <TextInput
+              style={styles.TextInput}
+              value="+88"
+              placeholderTextColor="#003f5c"
+              onChangeText={(email) => setEmail(email)}
+            />
+            <TextInput
+              style={styles.TextInput1}
+              placeholderTextColor="#d1d1d1"
+              placeholder="01XXXXXXXXX"
+              keyboardType="numeric"
+              //   secureTextEntry={true}
+              onChangeText={(phnnmbr) => setNumberInput(phnnmbr)}
+            />
+          </View>
 
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email"
-          placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
+          <TouchableOpacity
+            onPress={() => {
+              setOtp(true);
+            }}
+            style={styles.loginBtn}
+          >
+            <Text style={styles.loginText}>Get OTP</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+      {otp && (
+        <OTP
+          setOtp={setOtp}
+          navigation={navigation}
+          numberInput={numberInput}
         />
-      </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password."
-          placeholderTextColor="#003f5c"
-          //   secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
-
-      <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text
-          style={styles.loginText}
-          onPress={() => {
-            setLogins(true);
-            alert("ok");
-          }}
-        >
-          LOGIN
-        </Text>
-      </TouchableOpacity>
-    </View>
+      )}
+    </>
   );
 }
 
@@ -66,8 +69,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
+  },
+  mobotext: {
+    marginHorizontal: 15,
+    fontSize: 20,
+    color: "#666",
+  },
+  mobotextBold: {
+    fontWeight: "bold",
+  },
+  mobo: {
+    marginTop: 40,
+
+    marginHorizontal: 15,
   },
 
   image: {
@@ -83,7 +99,8 @@ const styles = StyleSheet.create({
     width: "95%",
     height: 45,
     marginBottom: 20,
-
+    display: "flex",
+    flexDirection: "row",
     alignItems: "center",
   },
 
@@ -92,6 +109,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginLeft: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: "#666",
+    fontSize: 26,
+  },
+  TextInput1: {
+    height: 50,
+    flex: 4,
+    padding: 10,
+    marginLeft: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: "#d1d1d1",
+    fontSize: 26,
   },
 
   forgot_button: {
@@ -102,17 +131,18 @@ const styles = StyleSheet.create({
   },
 
   loginBtn: {
-    width: "90%",
-    borderRadius: 25,
+    width: "92%",
+    borderRadius: 2,
     height: 50,
     alignItems: "center",
     justifyContent: "center",
 
     marginTop: 40,
-    backgroundColor: "#4287f5",
+    marginHorizontal: 15,
+    backgroundColor: "#DC2E45",
   },
   loginText: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: 22,
   },
 });
