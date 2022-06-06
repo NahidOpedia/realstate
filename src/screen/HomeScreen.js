@@ -22,8 +22,7 @@ import Login from "./Login";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import ProductsList from "../component/ProductsList";
 
-const WIDTH = Dimensions.get("window").width;
-const HEIGHT = Dimensions.get("window").height;
+import { AntDesign } from "@expo/vector-icons";
 
 const menuData = [
   {
@@ -47,209 +46,209 @@ const menuData = [
 const HomeScreen = ({ navigation }) => {
   return (
     <AppScreen>
-      <View>
-        <View style={styles.headerview}>
-          <Text style={styles.location}>
-            <SimpleLineIcons name="location-pin" color="#000" size={20} /> Dhaka
-          </Text>
-          <Image
-            style={styles.logo}
-            source={require("../assets/Npic/logo.png")}
-          />
-        </View>
-        <ScrollView
-          style={styles.scrollView}
-          showsHorizontalScrollIndicator={false}
-        >
-          {/* Category */}
-
-          <FlatList
-            horizontal
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            data={menuData}
-            keyExtractor={(item) => item.id.toString()}
-            // numColumns={2}
-            renderItem={({ item }) => <MenuCard data={item} />}
-          />
-          {/* Category */}
-
-          {/* Banner  */}
-
-          <View style={styles.banner}>
-            <ImageBackground
-              source={require("../assets/Npic/1650776948.jpg")}
-              imageStyle={{ borderRadius: 24 }}
-              style={styles.imageshaow}
-            >
-              <View style={styles.backText}>
-                <Text
-                  style={{
-                    fontSize: 22,
-                    fontWeight: "bold",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  Hill Rose II
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 16,
-                    color: "#FFFFFF",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Sukabumi, West Java
-                </Text>
-              </View>
-            </ImageBackground>
-          </View>
-
-          {/* Recomandation */}
-          <Text
-            style={{
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              color: "#666",
-            }}
-          >
-            Recomandations
-          </Text>
-          <FlatList
-            horizontal
-            pagingEnabled={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            data={reomData}
-            // ListHeaderComponent={() => (
-            //   <HeaderComponent navigation={navigation} />
-            // )}
-            // ListFooterComponent={() => <FooterComponent />}
-            keyExtractor={(item) => item.id.toString()}
-            // numColumns={2}
-            renderItem={({ item }) => <Recomandation data={item} />}
-          />
-          {/* Recomandation */}
-
-          {/* chocklet */}
-          <Text
-            style={{
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              color: "#666",
-            }}
-          >
-            Chocklet
-          </Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            data={reomData}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <ProductsList data={item} />}
-          />
-          {/* chocklet */}
-
-          {/* Groceries */}
-          <Text
-            style={{
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              color: "#666",
-            }}
-          >
-            Groceries
-          </Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            data={reomData}
-            // ListHeaderComponent={() => (
-            //   <HeaderComponent navigation={navigation} />
-            // )}
-            // ListFooterComponent={() => <FooterComponent />}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-            renderItem={({ item }) => <Recomandation data={item} />}
-          />
-          {/* Groceries */}
-
-          {/* Fry foods */}
-          <Text
-            style={{
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              color: "#666",
-            }}
-          >
-            Fry foods
-          </Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            data={reomData}
-            // ListHeaderComponent={() => (
-            //   <HeaderComponent navigation={navigation} />
-            // )}
-            // ListFooterComponent={() => <FooterComponent />}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-            renderItem={({ item }) => <Recomandation data={item} />}
-          />
-          {/* Fry foods */}
-
-          {/* Cow & Gate cereal */}
-          <Text
-            style={{
-              paddingHorizontal: 20,
-              paddingVertical: 10,
-              fontSize: 16,
-              fontWeight: "bold",
-              color: "#666",
-            }}
-          >
-            Cow & Gate cereal
-          </Text>
-          <FlatList
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            data={reomData}
-            // ListHeaderComponent={() => (
-            //   <HeaderComponent navigation={navigation} />
-            // )}
-            // ListFooterComponent={() => <FooterComponent />}
-            keyExtractor={(item) => item.id.toString()}
-            numColumns={2}
-            renderItem={({ item }) => <Recomandation data={item} />}
-          />
-          {/* Cow & Gate cereal */}
-
-          <HeaderComponent />
-        </ScrollView>
+      <View style={styles.headerview}>
+        <Text style={styles.location}>
+          <SimpleLineIcons name="location-pin" color="#000" size={20} /> Dhaka
+        </Text>
+        <AntDesign
+          onPress={() => navigation.navigate("Search")}
+          name="search1"
+          size={24}
+          color="black"
+        />
       </View>
+      <ScrollView
+        style={styles.scrollView}
+        showsHorizontalScrollIndicator={false}
+      >
+        {/* Category */}
+
+        <FlatList
+          horizontal
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          data={menuData}
+          keyExtractor={(item) => item.id.toString()}
+          // numColumns={2}
+          renderItem={({ item }) => <MenuCard data={item} />}
+        />
+        {/* Category */}
+
+        {/* Banner  */}
+
+        <View style={styles.banner}>
+          <ImageBackground
+            source={require("../assets/Npic/1650776948.jpg")}
+            imageStyle={{ borderRadius: 24 }}
+            style={styles.imageshaow}
+          >
+            <View style={styles.backText}>
+              <Text
+                style={{
+                  fontSize: 22,
+                  fontWeight: "bold",
+                  color: "#FFFFFF",
+                }}
+              >
+                Hill Rose II
+              </Text>
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: "#FFFFFF",
+                  fontWeight: "bold",
+                }}
+              >
+                Sukabumi, West Java
+              </Text>
+            </View>
+          </ImageBackground>
+        </View>
+
+        {/* Recomandation */}
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            fontSize: 16,
+            fontWeight: "bold",
+            color: "#666",
+          }}
+        >
+          Recomandations
+        </Text>
+        <FlatList
+          horizontal
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          data={reomData}
+          // ListHeaderComponent={() => (
+          //   <HeaderComponent navigation={navigation} />
+          // )}
+          // ListFooterComponent={() => <FooterComponent />}
+          keyExtractor={(item) => item.id.toString()}
+          // numColumns={2}
+          renderItem={({ item }) => <Recomandation data={item} />}
+        />
+        {/* Recomandation */}
+
+        {/* chocklet */}
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            fontSize: 16,
+            fontWeight: "bold",
+            color: "#666",
+          }}
+        >
+          Chocklet
+        </Text>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={reomData}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <ProductsList data={item} />}
+        />
+        {/* chocklet */}
+
+        {/* Groceries */}
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            fontSize: 16,
+            fontWeight: "bold",
+            color: "#666",
+          }}
+        >
+          Groceries
+        </Text>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          data={reomData}
+          // ListHeaderComponent={() => (
+          //   <HeaderComponent navigation={navigation} />
+          // )}
+          // ListFooterComponent={() => <FooterComponent />}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          renderItem={({ item }) => <Recomandation data={item} />}
+        />
+        {/* Groceries */}
+
+        {/* Fry foods */}
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            fontSize: 16,
+            fontWeight: "bold",
+            color: "#666",
+          }}
+        >
+          Fry foods
+        </Text>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          data={reomData}
+          // ListHeaderComponent={() => (
+          //   <HeaderComponent navigation={navigation} />
+          // )}
+          // ListFooterComponent={() => <FooterComponent />}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          renderItem={({ item }) => <Recomandation data={item} />}
+        />
+        {/* Fry foods */}
+
+        {/* Cow & Gate cereal */}
+        <Text
+          style={{
+            paddingHorizontal: 20,
+            paddingVertical: 10,
+            fontSize: 16,
+            fontWeight: "bold",
+            color: "#666",
+          }}
+        >
+          Cow & Gate cereal
+        </Text>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          data={reomData}
+          // ListHeaderComponent={() => (
+          //   <HeaderComponent navigation={navigation} />
+          // )}
+          // ListFooterComponent={() => <FooterComponent />}
+          keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
+          renderItem={({ item }) => <Recomandation data={item} />}
+        />
+        {/* Cow & Gate cereal */}
+
+        <HeaderComponent />
+      </ScrollView>
     </AppScreen>
   );
 };
