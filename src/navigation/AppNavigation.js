@@ -28,12 +28,44 @@ const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
+// function Mystack() {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//       }}
+//       initialRouteName="HomeScreen"
+//     >
+//       <Stack.Screen name="HomeScreen" component={MyTabs} />
+//       {/* <Stack.Screen name="HomeScreen" component={CustomeDrawer} /> */}
+//       <Stack.Screen name="details1" component={Details} />
+//       <Stack.Screen name="saved" component={SavedHome} />
+//       <Stack.Screen name="search" component={Search} />
+//       {/* <Stack.Screen name="SignIn" component={SignIn} />
+//     <Stack.Screen name="Register" component={Register} />
+//     <Stack.Screen name="SubScreen" component={SubScreen} />
+//     <Stack.Screen name="DetailsScreen" component={DetailsScreen} /> */}
+//     </Stack.Navigator>
+//   );
+// }
+
+const HomeStack = createNativeStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{ headerShown: false }}>
+      <HomeStack.Screen name="HomeS" component={HomeScreen} />
+      <HomeStack.Screen name="details1" component={Details} />
+    </HomeStack.Navigator>
+  );
+}
+
 function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="HomeS"
-        component={HomeScreen}
+        component={HomeStackScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             // <MaterialCommunityIcons name="bell" color={color} size={size} />
