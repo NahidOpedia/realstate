@@ -6,7 +6,7 @@ import { Dimensions, StyleSheet, View } from "react-native";
 
 const ProductsList = ({ data }) => {
   const navigation = useNavigation();
-  // console.log({ data });
+
   return (
     <Button
       // style={{ border: "none", background: data.color }}
@@ -39,7 +39,7 @@ const ProductsList = ({ data }) => {
           />
           <View>
             <Text p={2} style={styles.cat}>
-              A {data.category}
+              A {data.name}
             </Text>
             <Text
               alignItems="center"
@@ -50,14 +50,15 @@ const ProductsList = ({ data }) => {
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              {data.title}
+              {data.product_price}
             </Text>
           </View>
         </View>
 
         <View style={styles.pricecaart}>
-          <Text style={styles.price}> {data.price}</Text>
+          <Text style={styles.price}> {data.product_price}</Text>
           <Text style={styles.priceadd}>+</Text>
+          <Text style={styles.price}> {data.offer_price}</Text>
         </View>
       </View>
       {/* </Box> */}
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     color: "#4E627C",
   },
   price: {
-    fontSize: 18,
+    fontSize: 14,
     lineHeight: 16,
     color: "#4C84B4",
     fontWeight: "bold",

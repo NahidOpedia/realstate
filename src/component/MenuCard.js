@@ -9,7 +9,6 @@ const MenuCard = ({ data, noIcon }) => {
   const navigation = useNavigation();
   const [ok, setOk] = useState(data?.title);
 
-  // console.log({ data });
   return (
     <Button
       style={{
@@ -34,7 +33,8 @@ const MenuCard = ({ data, noIcon }) => {
         alignItems="center"
       >
         <Image
-          source={{ uri: `https://illustoon.com/photo/3831.png` }}
+          source={{ uri: `${data.image}` }}
+          // source={{ uri: `https://illustoon.com/photo/3831.png` }}
           size="xl"
           resizeMode="contain"
           alt="image"
@@ -61,7 +61,7 @@ const MenuCard = ({ data, noIcon }) => {
               color="#4C84B4"
             />
           )}
-          {data?.title}
+          {data?.name}
         </Text>
       </Box>
     </Button>

@@ -44,6 +44,23 @@ const menuData = [
 ];
 
 const HomeScreen = ({ navigation }) => {
+  const [categoriesapi, setCategoriesapi] = useState([]);
+  const [productsesapi, setProductsesapi] = useState([]);
+
+  useEffect(() => {
+    fetch("https://saif001.herokuapp.com/basic/category")
+      .then((response) => response.json())
+      .then((json) => setCategoriesapi(json))
+      .catch((error) => console.error(error));
+  }, []);
+
+  useEffect(() => {
+    fetch("https://saif001.herokuapp.com/product/list/")
+      .then((response) => response.json())
+      .then((json) => setProductsesapi(json))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <AppScreen>
       <View style={styles.headerview}>
@@ -71,7 +88,7 @@ const HomeScreen = ({ navigation }) => {
             justifyContent: "center",
             alignItems: "center",
           }}
-          data={menuData}
+          data={categoriesapi}
           keyExtractor={(item) => item.id.toString()}
           // numColumns={2}
           renderItem={({ item }) => <MenuCard data={item} />}
@@ -154,7 +171,7 @@ const HomeScreen = ({ navigation }) => {
         </Text>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={reomData}
+          data={productsesapi}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <ProductsList data={item} />}
         />
