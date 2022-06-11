@@ -59,7 +59,7 @@ const OTP = ({ numberInput, setOtp, navigation }) => {
 
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("HomeS");
+          navigation.navigate("Home");
           setOtp(false);
         }}
         style={styles.loginBtn}

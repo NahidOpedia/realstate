@@ -4,54 +4,35 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ScrollView,
-  ImageBackground,
   TouchableOpacity,
 } from "react-native";
 import AppScreen from "../component/AppScreen";
-import reomData from "../data/recomandation";
-import Recomandation from "../component/Recomandation";
 
 import { AntDesign } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
-import {
-  VStack,
-  Input,
-  Icon,
-  NativeBaseProvider,
-  Center,
-  Box,
-} from "native-base";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import productsData from "../data/AllProducts";
-import MenuCard from "../component/MenuCard";
-import ProfileRec from "../component/ProfileRec";
-
-const Profile = () => {
-  const [value, setValue] = React.useState(null);
-  const [totalD, setTotalD] = React.useState(productsData);
-  const handleChange = (text) => setValue(text);
-
-  const filteredData = value
-    ? productsData.filter(function (item) {
-        // console.log(item, "item");
-        return item?.title?.includes(value);
-      })
-    : productsData;
-
-  const searchHandler = () => {
-    setTotalD(filteredData);
-  };
-
-  const { isOpen, onOpen, onClose } = useDisclose();
-
-  // console.log("filteredData", filteredData);
-  useEffect(() => {}, [filteredData]);
-
+const Profile = ({ navigation }) => {
   return (
     <AppScreen>
+      <View style={styles.header}>
+        <View style={styles.headerflex}>
+          <MaterialIcons
+            onPress={() => navigation.goBack()}
+            name="keyboard-arrow-left"
+            size={40}
+            color="black"
+          />
+          <Text style={styles.textbld}>My Profile</Text>
+        </View>
+        <TouchableOpacity
+          style={styles.sidebarView}
+          onPress={() => navigation.navigate("Search")}
+        >
+          <AntDesign name="search1" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView
         style={styles.scrollView}
         showsHorizontalScrollIndicator={false}
@@ -66,25 +47,43 @@ const Profile = () => {
           <Text style={styles.bestText}>Md Nahid Murad Abir</Text>
         </View>
 
-        {/* Best rating  */}
-        {!value && (
-          <View>
-            <Text style={styles.bestText}>Your Recommended</Text>
-            <View>
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                data={reomData}
-                keyExtractor={(item) => item.id.toString()}
-                numColumns={2}
-                renderItem={({ item }) => <ProfileRec data={item} />}
-              />
-            </View>
+        {/* items */}
+        <View style={styles.items}>
+          <View style={styles.items2}>
+            <Text style={styles.mediumText}>25</Text>
+            <Text style={styles.lightText}>Orders</Text>
           </View>
-        )}
+          <View style={styles.items2}>
+            <Text style={styles.mediumText}>৳1680</Text>
+            <Text style={styles.lightText}>Saved</Text>
+          </View>
+          <View style={styles.items2}>
+            <Text style={styles.mediumText}>৳17501</Text>
+            <Text style={styles.lightText}>spend</Text>
+          </View>
+        </View>
+        {/* items */}
+
+        {/* options  */}
+        <View style={styles.Options}>
+          <Text style={styles.lightText2}>Mobile Number</Text>
+          <Text style={styles.mediumText2}>01620665499</Text>
+        </View>
+        <View style={styles.Options}>
+          <Text style={styles.lightText2}>Address</Text>
+          <Text style={styles.mediumText2}>Mirpur-14, Dhaka -1206, cantt</Text>
+        </View>
+        <View style={styles.Options}>
+          <Text style={styles.lightText2}>Email</Text>
+          <Text style={styles.mediumText2}>nahid.muradabir@gmail.com</Text>
+        </View>
+        <View style={styles.Options}>
+          <Text style={styles.mediumText2}>Change Password </Text>
+        </View>
+        <View style={styles.Options}>
+          <Text style={styles.mediumText2}>Select Default Payment </Text>
+        </View>
+        {/* options  */}
       </ScrollView>
     </AppScreen>
   );
@@ -93,42 +92,84 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  topText: {
-    color: "#fff",
-    fontWeight: "bold",
-    // textAlignVertical: "end",
-  },
-  bestText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#000",
-    // paddingVertical: 20,
-    paddingHorizontal: 20,
-  },
-  submit: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    color: "#fff",
-    backgroundColor: "#4E627C",
-    // border: "1px solid #4E627C",
-
-    fontSize: 30,
-    borderRadius: 14,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    marginVertical: 15,
-    alignItems: "center",
-    width: 160,
-  },
   profile: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
     justifyContent: "center",
-    marginVertical: 20,
+    alignItems: "center",
+    marginVertical: 30,
   },
   recImg: {
-    borderRadius: 50,
+    width: 100,
+    height: 100,
     marginVertical: 20,
+    resizeMode: "cover",
+    borderRadius: 100 / 2,
+  },
+
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginVertical: 20,
+    marginHorizontal: 15,
+  },
+  headerflex: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  textbld: {
+    fontSize: 20,
+    textAlign: "left",
+    fontWeight: "800",
+  },
+  bestText: {
+    fontSize: 20,
+    fontWeight: "700",
+  },
+
+  items: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 50,
+    marginBottom: 50,
+  },
+  items2: {
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  mediumText: {
+    textAlign: "center",
+
+    fontSize: 20,
+    fontWeight: "800",
+  },
+  lightText: {
+    textAlign: "center",
+
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#666",
+  },
+  Options: {
+    marginHorizontal: 20,
+    marginVertical: 10,
+    padding: 10,
+    borderBottomColor: "#C0C0C0",
+    borderBottomWidth: 1,
+  },
+  mediumText2: {
+    fontSize: 16,
+    fontWeight: "700",
+    color: "#222",
+    marginTop: 5,
+  },
+  lightText2: {
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#666",
   },
 });

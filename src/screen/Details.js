@@ -24,7 +24,7 @@ const image2 = {
 const Details = ({ navigation, route }) => {
   const { isOpen, onOpen, onClose } = useDisclose();
   const { data } = route.params;
-  console.log("data", data);
+  console.log("data array: ", data); //eikhane array ashbe data er
 
   return (
     <View style={styles.imageWrap}>
@@ -45,11 +45,14 @@ const Details = ({ navigation, route }) => {
           <Image
             style={styles.logo}
             source={require("../assets/pic/unsplash_tHkJAMcO3QE.png")}
+            alt={`${data?.get_product_images[0]?.image}`}
           />
         </View>
         <View style={styles.banner}>
           <ImageBackground
-            source={require("../assets/Npic/16468101648520.jpg")}
+            source={{
+              uri: `${data?.get_product_images[0]?.image}`,
+            }}
             imageStyle={{ borderRadius: 6 }}
             style={{
               width: "100%",
@@ -63,7 +66,7 @@ const Details = ({ navigation, route }) => {
 
         <View style={styles.details}>
           <View style={styles.header}>
-            <Text style={styles.name}>Gerber hearty bits multigrain</Text>
+            <Text style={styles.name}>{data?.name}</Text>
             <Text style={styles.des}> Banana Apple Strawberry</Text>
           </View>
           <View style={styles.logos}>
@@ -75,38 +78,6 @@ const Details = ({ navigation, route }) => {
             </Text>
           </View>
         </View>
-
-        <View>
-          <Text style={styles.heade2}>Introduction</Text>
-          <Text>
-            Origin : USA Weight : 227gm Delivery Charge Inside Dhaka 80 Taka
-            Outside Dhaka 150 Taka
-          </Text>
-        </View>
-        <View>
-          <Text style={styles.heade2}>Ultilities</Text>
-          <Text>
-            Origin : USA Weight : 227gm Delivery Charge Inside Dhaka 80 Taka
-            Outside Dhaka 150 Taka
-          </Text>
-        </View>
-        {["vitamine", "Irons", "Nutrains", "Regix", "solt", "fruits"].map(
-          (i) => (
-            <View style={styles.option}>
-              <Text style={styles.heade2}>
-                {/* <FontAwesome5
-                  name="building"
-                  style={{ margin: 10 }}
-                  size={24}
-                  color="black"
-                /> */}
-                {i}
-              </Text>
-
-              <Text>3 grams</Text>
-            </View>
-          )
-        )}
 
         <View>
           <Text style={styles.heade2}>Description</Text>
@@ -169,17 +140,19 @@ const Details = ({ navigation, route }) => {
       {/* bottom side bar  */}
       <Actionsheet isOpen={isOpen} onClose={onClose}>
         <Actionsheet.Content>
-          <ScrollView>
+          <ScrollView showsHorizontalScrollIndicator={false}>
             <View style={styles.banner}>
               <ImageBackground
-                source={image2}
+                source={{
+                  uri: `${data?.get_product_images[0]?.image}`,
+                }}
                 imageStyle={{ borderRadius: 6 }}
                 style={{
                   width: "100%",
                   height: "100%",
                 }}
               >
-                <Text style={styles.name}>baby food</Text>
+                <Text style={styles.name}>Dihan baby food</Text>
                 <Text>Cow & gate Banana Porridge 125 gm</Text>
               </ImageBackground>
             </View>
@@ -263,7 +236,7 @@ const styles = StyleSheet.create({
     // textAlignVertical: "end",
   },
   banner: {
-    width: "100%",
+    width: "90%",
     // margin: "0",
     height: 350,
     alignContent: "center",
@@ -362,7 +335,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
 
-    backgroundColor: "#4E627C",
+    backgroundColor: "#DC2E45",
     // border: "1px solid #4E627C",
 
     borderRadius: 14,
@@ -376,7 +349,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     color: "#fff",
-    backgroundColor: "#4E627C",
+    backgroundColor: "#DC2E45",
     // border: "1px solid #4E627C",
 
     fontSize: 25,

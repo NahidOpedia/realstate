@@ -5,29 +5,19 @@ import React, { useState } from "react";
 // icosn
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-const MenuCard = ({ data, noIcon }) => {
+const Topdealcard = ({ data, noIcon }) => {
   const navigation = useNavigation();
-  const [ok, setOk] = useState(data?.name);
+  const [ok, setOk] = useState(data?.title);
 
   return (
     <Button
       style={{
-        // width: 140,
+        width: 140,
         // maxWidth: "100%",
         border: "none",
-        backgroundColor: "transparent",
+        backgroundColor: "#F6F9FB",
         borderRadius: 10,
         margin: 5,
-
-        shadowColor: ok === "categorya" ? "red" : "#666",
-        shadowOffset: {
-          width: 0,
-          height: 5,
-        },
-        shadowOpacity: ok === "categorya" ? 0.25 : 0.5,
-        shadowRadius: 4.84,
-
-        elevation: 5,
       }}
       alignItems="center"
       justifyContent="center"
@@ -36,27 +26,12 @@ const MenuCard = ({ data, noIcon }) => {
       <Box
         style={{
           borderRadius: 10,
-          backgroundColor: ok === "categorya" && "#DC2E45",
-          width: 110,
+          backgroundColor: ok === "all" && "#DC2E45",
         }}
         w="100%"
         p="2"
-        py="5"
         alignItems="center"
       >
-        <Image
-          source={{ uri: `${data.image}` }}
-          // source={{ uri: `https://illustoon.com/photo/3831.png` }}
-          size="xl"
-          resizeMode="cover"
-          alt="image"
-          style={{
-            borderRadius: 200,
-            height: 50,
-            width: 50,
-          }}
-        />
-
         <Text
           alignItems="center"
           textAlign="center"
@@ -65,9 +40,6 @@ const MenuCard = ({ data, noIcon }) => {
           color="#4C84B4"
           my="1"
           mx="2"
-          style={{
-            color: ok === "categorya" && "#fff",
-          }}
 
           // p='1'
         >
@@ -85,4 +57,4 @@ const MenuCard = ({ data, noIcon }) => {
   );
 };
 
-export default MenuCard;
+export default Topdealcard;

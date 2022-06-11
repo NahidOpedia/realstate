@@ -1,22 +1,23 @@
 import React from "react";
 
 import { useNavigation } from "@react-navigation/native";
-import { Box, Button, Heading, Image, Text } from "native-base";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Image, Text } from "native-base";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 
 const ProductsList = ({ data }) => {
   const navigation = useNavigation();
 
+  console.log("single data", data?.get_product_images[0]?.image);
+
   return (
-    <Button
-      // style={{ border: "none", background: data.color }}
-      bg="#fff"
-      my="2"
-      w="100%"
-      borderRadius="10px"
+    <TouchableOpacity
+      style={{
+        paddingHorizontal: 10,
+        backgroundColor: "#fff",
+        marginVertical: 5,
+      }}
       onPress={() => navigation.navigate("details1", { data })}
     >
-      {/* <Box w={"100%"} alignItems="center"> */}
       <View
         style={{
           display: "flex",
@@ -32,14 +33,16 @@ const ProductsList = ({ data }) => {
           }}
         >
           <Image
-            source={data?.image}
-            size="xl"
+            source={{
+              uri: `${data?.get_product_images[0]?.image}`,
+            }}
+            size="sm"
             resizeMode="contain"
-            alt="image"
+            alt={`${data?.id}`}
           />
           <View>
             <Text p={2} style={styles.cat}>
-              A {data.name}
+              {data.name}
             </Text>
             <Text
               alignItems="center"
@@ -56,13 +59,11 @@ const ProductsList = ({ data }) => {
         </View>
 
         <View style={styles.pricecaart}>
-          <Text style={styles.price}> {data.product_price}</Text>
+          <Text style={styles.price}>{data.first_page_showing_price}</Text>
           <Text style={styles.priceadd}>+</Text>
-          <Text style={styles.price}> {data.offer_price}</Text>
         </View>
       </View>
-      {/* </Box> */}
-    </Button>
+    </TouchableOpacity>
   );
 };
 
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
   pricecaart: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
   cat: {
     fontSize: 14,
@@ -88,14 +90,15 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   priceadd: {
+    width: 20,
     height: 20,
     fontSize: 20,
     lineHeight: 16,
-    color: "#fff",
-    backgroundColor: "#41bf1f",
-    padding: 5,
-    paddingBottom: 0,
+    color: "#DC2E45",
+    backgroundColor: "#f5c9c9",
+    paddingTop: 4,
     marginBottom: 10,
     fontWeight: "bold",
+    textAlign: "center",
   },
 });

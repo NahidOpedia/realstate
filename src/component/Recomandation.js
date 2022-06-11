@@ -6,7 +6,8 @@ import { Dimensions, StyleSheet, View } from "react-native";
 
 const Recomandation = ({ data }) => {
   const navigation = useNavigation();
-  // console.log({ data });
+
+  console.log("single data recs theke: ", data);
   return (
     <Button
       // style={{ border: "none", background: data.color }}
@@ -16,7 +17,7 @@ const Recomandation = ({ data }) => {
       borderRadius="10px"
       alignItems="center"
       justifyContent="center"
-      onPress={() => navigation.navigate("details1", { data })}
+      // onPress={() => navigation.navigate("details1", { data })}
     >
       {/* <Box w={"100%"} alignItems="center"> */}
       <Image source={data?.image} size="xl" resizeMode="contain" alt="image" />
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     color: "#4E627C",
   },
   price: {
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 16,
     color: "#4C84B4",
     fontWeight: "bold",

@@ -9,7 +9,7 @@ const reomData = [
     price: "$21.12",
   },
   {
-    id: 2122,
+    id: 2435122,
     title: "Godiva Roasted",
     category: "chocklet",
     color: "#ffdfd2",
@@ -18,7 +18,7 @@ const reomData = [
     price: "$21.12",
   },
   {
-    id: 1,
+    id: 5231,
     title: "Godiva Roasted",
     category: "chocklet",
     color: "#ffdfd2",
@@ -27,7 +27,7 @@ const reomData = [
     price: "$21.12",
   },
   {
-    id: 2122,
+    id: 21523522,
     title: "Godiva Roasted",
     category: "chocklet",
     color: "#ffdfd2",
@@ -36,7 +36,7 @@ const reomData = [
     price: "$21.12",
   },
   {
-    id: 1,
+    id: 555541,
     title: "Godiva Roasted",
     category: "chocklet",
     color: "#ffdfd2",
@@ -45,7 +45,7 @@ const reomData = [
     price: "$21.12",
   },
   {
-    id: 2122,
+    id: 26234122,
     title: "Godiva Roasted",
     category: "chocklet",
     color: "#ffdfd2",
@@ -54,7 +54,7 @@ const reomData = [
     price: "$21.12",
   },
   {
-    id: 2,
+    id: 2523453,
     title: "Gerber hearty bits",
     category: "Groceries",
     color: "#ffdfd2",
@@ -63,7 +63,7 @@ const reomData = [
     price: "$40.12",
   },
   {
-    id: 4,
+    id: 462564,
     title: "Nivea Long Lasting Moisture",
     category: "Fry foods",
     color: "#ffdfd2",
@@ -72,7 +72,7 @@ const reomData = [
     price: "$34.12",
   },
   {
-    id: 3,
+    id: 3326,
     title: "Cow & gate Banana Porridge",
     category: "Cow & Gate cereal",
     color: "#ffdfd2",

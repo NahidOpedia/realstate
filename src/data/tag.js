@@ -1,35 +1,35 @@
 const tagData = [
   {
     id: 1,
-    title: "Home",
+    title: "Fruit",
   },
   {
     id: 2,
-    title: "Beach",
+    title: "Cake",
   },
   {
     id: 4,
-    title: "Recicle ",
+    title: "Milk ",
   },
   {
     id: 3,
-    title: "Marine",
+    title: "Drinks",
   },
   {
     id: 15,
-    title: "Baoting",
+    title: "Fries",
   },
   {
     id: 23,
-    title: "Car",
+    title: "juices",
   },
   {
     id: 43,
-    title: "Hill ",
+    title: "Food ",
   },
   {
     id: 35,
-    title: "Marine drive",
+    title: "Chocklet",
   },
 ];
 export default tagData;

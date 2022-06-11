@@ -25,7 +25,7 @@ const image = {
   uri: "https://images.unsplash.com/photo-1550461716-dbf266b2a8a7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 };
 
-const Search = () => {
+const Search = ({ navigation }) => {
   const [value, setValue] = React.useState(null);
   const [totalD, setTotalD] = React.useState(reomData);
   const [dataP, setDataP] = React.useState([]);
@@ -84,15 +84,10 @@ const Search = () => {
               />
             }
           />
-          {value ? (
-            <Text onPress={searchHandler}>
-              <AntDesign name="search1" size={24} color="black" />
-            </Text>
-          ) : (
-            <TouchableOpacity onPress={onOpen}>
-              <Ionicons name="md-filter" size={30} color="black" />
-            </TouchableOpacity>
-          )}
+
+          <TouchableOpacity onPress={onOpen}>
+            <Ionicons name="md-filter" size={30} color="black" />
+          </TouchableOpacity>
         </VStack>
       </VStack>
 
@@ -110,7 +105,11 @@ const Search = () => {
           data={tagData}
           showsHorizontalScrollIndicator={false}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <MenuCard noIcon={false} data={item} />}
+          renderItem={({ item }) => (
+            <View style={styles.primarybtnView}>
+              <Text style={styles.primarybtn}>{item?.title}</Text>
+            </View>
+          )}
         />
 
         {dataP.length ? (
@@ -128,134 +127,26 @@ const Search = () => {
         ) : (
           <Text> Loading ..</Text>
         )}
-
-        {/* banner */}
-        {!value && (
-          <View
-            style={{
-              borderRadius: 20,
-              marginVertical: 10,
-            }}
-          >
-            <ImageBackground
-              source={image}
-              imageStyle={{ borderRadius: 6 }}
-              style={{
-                margin: 20,
-                height: 180,
-                borderRadius: 20,
-              }}
-            >
-              <Text style={styles.topText}>Top 10 Condo</Text>
-            </ImageBackground>
-          </View>
-        )}
-        {/* Best rating  */}
-        {!value && (
-          <View>
-            <Text style={styles.bestText}>Best Rating</Text>
-
-            <View>
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                data={reomData}
-                keyExtractor={(item) => item.id.toString()}
-                numColumns={2}
-                renderItem={({ item }) => <Recomandation data={item} />}
-              />
-            </View>
-          </View>
-        )}
-
-        {/* searched product */}
-        <Text style={styles.bestText}>
-          {totalD.length === 0 && "No Data Found"}
-        </Text>
-        {totalD.length !== 0 && (
-          <View>
-            <Text style={styles.bestText}>Filtered Items:</Text>
-
-            <View>
-              <FlatList
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                data={totalD}
-                keyExtractor={(item) => item.id.toString()}
-                numColumns={2}
-                renderItem={({ item }) => <Recomandation data={item} />}
-              />
-            </View>
-          </View>
-        )}
       </ScrollView>
 
       <Actionsheet isOpen={isOpen} onClose={onClose}>
         <Actionsheet.Content>
           {/* Location */}
-          <ScrollView>
-            <Text style={styles.bestText}>Location</Text>
-            <FlatList
-              horizontal
-              contentContainerStyle={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              data={reomData}
-              showsHorizontalScrollIndicator={false}
-              // ListHeaderComponent={() => (
-              //   <HeaderComponent navigation={navigation} />
-              // )}
-              // ListFooterComponent={() => <FooterComponent />}
-              keyExtractor={(item) => item.id.toString()}
-              // numColumns={2}
-              renderItem={({ item }) => <MenuCard data={item} />}
-            />
-            {/* Payment Method */}
-            <Text style={styles.bestText}>Payment Method</Text>
-            <FlatList
-              horizontal
-              contentContainerStyle={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              data={reomData}
-              showsHorizontalScrollIndicator={false}
-              // ListHeaderComponent={() => (
-              //   <HeaderComponent navigation={navigation} />
-              // )}
-              // ListFooterComponent={() => <FooterComponent />}
-              keyExtractor={(item) => item.id.toString()}
-              // numColumns={2}
-              renderItem={({ item }) => <MenuCard data={item} />}
-            />
-            {/* Price Monthly */}
-            <Text style={styles.bestText}>Price Monthly</Text>
-            <FlatList
-              horizontal
-              contentContainerStyle={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              data={reomData}
-              showsHorizontalScrollIndicator={false}
-              // ListHeaderComponent={() => (
-              //   <HeaderComponent navigation={navigation} />
-              // )}
-              // ListFooterComponent={() => <FooterComponent />}
-              keyExtractor={(item) => item.id.toString()}
-              // numColumns={2}
-              renderItem={({ item }) => <MenuCard data={item} />}
-            />
 
-            {/* seller type */}
-            <Text style={styles.bestText}>seller type</Text>
+          <Text style={styles.bestText}>Location</Text>
+          {/* <FlatList
+              horizontal
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <MenuCard data={item} />}
+            /> */}
+          {/* Payment Method */}
+          {/* <Text style={styles.bestText}>Payment Method</Text>
             <FlatList
               horizontal
               contentContainerStyle={{
@@ -264,31 +155,28 @@ const Search = () => {
               }}
               data={reomData}
               showsHorizontalScrollIndicator={false}
-              // ListHeaderComponent={() => (
-              //   <HeaderComponent navigation={navigation} />
-              // )}
-              // ListFooterComponent={() => <FooterComponent />}
               keyExtractor={(item) => item.id.toString()}
-              // numColumns={2}
               renderItem={({ item }) => <MenuCard data={item} />}
-            />
+            /> */}
+          {/* Price Monthly */}
+          {/* <Text style={styles.bestText}>Price Monthly</Text>
+            <FlatList
+              horizontal
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <MenuCard data={item} />}
+            /> */}
 
-            {/* Property Type */}
-            <Text style={styles.bestText}>Property Type</Text>
-            <FlatList
-              horizontal
-              contentContainerStyle={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              data={reomData}
-              showsHorizontalScrollIndicator={false}
-              keyExtractor={(item) => item.id.toString()}
-              renderItem={({ item }) => <MenuCard data={item} />}
-            />
+          {/* seller type */}
+          <Text style={styles.bestText}>Seller type</Text>
 
-            {/* Bathrooms */}
-            <Text style={styles.bestText}>Bathrooms</Text>
+          {/* Property Type */}
+          {/* <Text style={styles.bestText}>Property Type</Text>
             <FlatList
               horizontal
               contentContainerStyle={{
@@ -299,10 +187,10 @@ const Search = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => <MenuCard data={item} />}
-            />
+            /> */}
 
-            {/* Bedrooms type */}
-            <Text style={styles.bestText}>Bedrooms</Text>
+          {/* Bathrooms */}
+          {/* <Text style={styles.bestText}>Bathrooms</Text>
             <FlatList
               horizontal
               contentContainerStyle={{
@@ -313,9 +201,10 @@ const Search = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => <MenuCard data={item} />}
-            />
-            {/* Furnishing */}
-            <Text style={styles.bestText}>Furnishing</Text>
+            /> */}
+
+          {/* Bedrooms type */}
+          {/* <Text style={styles.bestText}>Bedrooms</Text>
             <FlatList
               horizontal
               contentContainerStyle={{
@@ -326,8 +215,20 @@ const Search = () => {
               showsHorizontalScrollIndicator={false}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => <MenuCard data={item} />}
-            />
-          </ScrollView>
+            /> */}
+          {/* Furnishing */}
+          {/* <Text style={styles.bestText}>Furnishing</Text>
+            <FlatList
+              horizontal
+              contentContainerStyle={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              data={reomData}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => <MenuCard data={item} />}
+            /> */}
 
           <TouchableOpacity style={styles.submit} onPress={onClose}>
             <Text style={styles.topText}> Filter</Text>
@@ -337,7 +238,6 @@ const Search = () => {
     </AppScreen>
   );
 };
-
 export default Search;
 
 const styles = StyleSheet.create({
@@ -356,7 +256,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     color: "#fff",
-    backgroundColor: "#4E627C",
+    backgroundColor: "#DC2E45",
 
     fontSize: 30,
     borderRadius: 14,
@@ -365,5 +265,21 @@ const styles = StyleSheet.create({
     marginVertical: 15,
     alignItems: "center",
     width: 160,
+  },
+  primarybtnView: {
+    borderRadius: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "#fff",
+    borderStyle: "solid",
+    backgroundColor: "#fff",
+    marginHorizontal: 8,
+    marginVertical: 5,
+  },
+  primarybtn: {
+    color: "#000",
+    paddingHorizontal: 25,
+    paddingVertical: 15,
+    marginHorizontal: 10,
   },
 });

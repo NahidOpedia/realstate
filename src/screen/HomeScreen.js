@@ -19,29 +19,9 @@ import Recomandation from "../component/Recomandation";
 import reomData from "../data/recomandation";
 import Login from "./Login";
 
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import ProductsList from "../component/ProductsList";
 
 import { AntDesign } from "@expo/vector-icons";
-
-const menuData = [
-  {
-    id: "12",
-    title: "all",
-    image: "https://illustoon.com/photo/3831.png",
-  },
-  {
-    id: "15",
-    title: "Baby Food",
-    image: "https://illustoon.com/photo/3831.png",
-  },
-  { id: "158", title: "Diaper", image: "https://illustoon.com/photo/3831.png" },
-  {
-    id: "112",
-    title: "Dry Food's",
-    image: "https://illustoon.com/photo/3831.png",
-  },
-];
 
 const HomeScreen = ({ navigation }) => {
   const [categoriesapi, setCategoriesapi] = useState([]);
@@ -64,15 +44,19 @@ const HomeScreen = ({ navigation }) => {
   return (
     <AppScreen>
       <View style={styles.headerview}>
-        <Text style={styles.location}>
-          <SimpleLineIcons name="location-pin" color="#000" size={20} /> Dhaka
-        </Text>
-        <AntDesign
+        <TouchableOpacity
+          style={styles.sidebarView}
+          onPress={() => navigation.openDrawer()}
+        >
+          <AntDesign name="windowso" size={28} color="black" />
+        </TouchableOpacity>
+        <Text style={styles.location}>Dhaka, Gulshan</Text>
+        <TouchableOpacity
+          style={styles.sidebarView}
           onPress={() => navigation.navigate("Search")}
-          name="search1"
-          size={24}
-          color="black"
-        />
+        >
+          <AntDesign name="search1" size={24} color="black" />
+        </TouchableOpacity>
       </View>
       <ScrollView
         style={styles.scrollView}
@@ -102,6 +86,7 @@ const HomeScreen = ({ navigation }) => {
             source={require("../assets/Npic/1650776948.jpg")}
             imageStyle={{ borderRadius: 24 }}
             style={styles.imageshaow}
+            
           >
             <View style={styles.backText}>
               <Text
@@ -147,12 +132,7 @@ const HomeScreen = ({ navigation }) => {
             alignItems: "center",
           }}
           data={reomData}
-          // ListHeaderComponent={() => (
-          //   <HeaderComponent navigation={navigation} />
-          // )}
-          // ListFooterComponent={() => <FooterComponent />}
           keyExtractor={(item) => item.id.toString()}
-          // numColumns={2}
           renderItem={({ item }) => <Recomandation data={item} />}
         />
         {/* Recomandation */}
@@ -167,7 +147,7 @@ const HomeScreen = ({ navigation }) => {
             color: "#666",
           }}
         >
-          Chocklet
+          Products
         </Text>
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -190,18 +170,15 @@ const HomeScreen = ({ navigation }) => {
           Groceries
         </Text>
         <FlatList
-          showsVerticalScrollIndicator={false}
+          horizontal
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
           contentContainerStyle={{
             justifyContent: "center",
             alignItems: "center",
           }}
           data={reomData}
-          // ListHeaderComponent={() => (
-          //   <HeaderComponent navigation={navigation} />
-          // )}
-          // ListFooterComponent={() => <FooterComponent />}
           keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
           renderItem={({ item }) => <Recomandation data={item} />}
         />
         {/* Groceries */}
@@ -218,7 +195,7 @@ const HomeScreen = ({ navigation }) => {
         >
           Fry foods
         </Text>
-        <FlatList
+        {/* <FlatList
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             justifyContent: "center",
@@ -230,8 +207,14 @@ const HomeScreen = ({ navigation }) => {
           // )}
           // ListFooterComponent={() => <FooterComponent />}
           keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
+          numColumns={3}
           renderItem={({ item }) => <Recomandation data={item} />}
+        /> */}
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={productsesapi}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => <ProductsList data={item} />}
         />
         {/* Fry foods */}
 
@@ -249,22 +232,10 @@ const HomeScreen = ({ navigation }) => {
         </Text>
         <FlatList
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          data={reomData}
-          // ListHeaderComponent={() => (
-          //   <HeaderComponent navigation={navigation} />
-          // )}
-          // ListFooterComponent={() => <FooterComponent />}
+          data={productsesapi}
           keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          renderItem={({ item }) => <Recomandation data={item} />}
+          renderItem={({ item }) => <ProductsList data={item} />}
         />
-        {/* Cow & Gate cereal */}
-
-        <HeaderComponent />
       </ScrollView>
     </AppScreen>
   );
@@ -335,7 +306,11 @@ const styles = StyleSheet.create({
     marginLeft: 100,
     justifyContent: "center",
   },
-
+  sidebarView: {
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+  },
   imageWrap: {
     width: "90%",
   },
@@ -344,11 +319,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 20,
-    alignItems: "center",
+    alignContent: "center",
+    // alignItems: "center",
   },
   location: {
     backgroundColor: "transparent",
-    paddingHorizontal: 30,
+    paddingHorizontal: 10,
     paddingVertical: 15,
     marginVertical: 10,
     borderRadius: 10,
